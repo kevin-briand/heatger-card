@@ -35,7 +35,7 @@ export class HeatgerBackend extends Axios {
       await hass.callWS<DeviceDto[]>({ type: 'config/device_registry/list', id: 1 })
         .then(r => r.find((r: DeviceDto) => {
           if (r.name === 'heatger') {
-            return undefined
+            return r
           }
           return false
         })).catch(() => {
