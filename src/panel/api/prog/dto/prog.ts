@@ -1,7 +1,7 @@
-import { type Order } from '../enum/order'
+import { type State } from '../enum/state'
 
 export interface Prog {
   day: number
   hour: string
-  order: Order
+  state: State
 }

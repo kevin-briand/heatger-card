@@ -1,4 +1,4 @@
-import { type CSSResultGroup, html, LitElement, type TemplateResult } from 'lit'
+import { css, type CSSResultGroup, html, LitElement, type TemplateResult } from 'lit'
 import { type HomeAssistant, type Panel } from 'custom-card-helpers'
 import { customElement, property, state } from 'lit/decorators.js'
 import { getProgQuery } from '../api/prog/queries/get_prog_query'
@@ -49,7 +49,7 @@ export class HeatgerProgCard extends LitElement {
 
     const progs: Prog[] = []
     selectedDays.forEach((day) => {
-      progs.push({ day, hour: time, order: state })
+      progs.push({ day, hour: time, state })
     })
     this.updateProgTable(createProgQuery(this.hass, zone, progs))
   }
@@ -130,12 +130,12 @@ export class HeatgerProgCard extends LitElement {
                             </div>
                         </form>
                         
-                        <mwc-tab-bar>
-                            <mwc-tab label="${localize('zone', this.hass.language)} 1" 
-                                     @click="${() => { this.switchTab(0) }}"></mwc-tab>
-                            <mwc-tab label="${localize('zone', this.hass.language)} 2" 
-                                     @click="${() => { this.switchTab(1) }}"></mwc-tab>
-                        </mwc-tab-bar>
+                        <ha-tab-bar>
+                            <mwc-button class="tab" @click="${() => { this.switchTab(0) }}">
+                                ${localize('zone', this.hass.language)} 1</mwc-button>
+                            <mwc-button class="tab" @click="${() => { this.switchTab(1) }}">
+                                ${localize('zone', this.hass.language)} 2</mwc-button>
+                        </ha-tab-bar>
                         ${this.error}
                         <heatger-prog-table .hass="${this.hass}" .rowClicked="${this.handleDelete.bind(this)}"></heatger-prog-table>
                     </div>
@@ -145,6 +145,19 @@ export class HeatgerProgCard extends LitElement {
   }
 
   static get styles (): CSSResultGroup {
-    return style
+    return css`
+      ${style}
+      ha-tab-bar {
+        display: flex;
+        width: 100%;
+      }
+
+      .tab {
+        flex-grow: 1;
+        text-align: center;
+        color: var(--mdc-theme-primary,#6200ee);
+      }
+      }
+    `
   }
 }

@@ -1,4 +1,4 @@
-export enum Order {
+export enum State {
   COMFORT,
   ECO,
   FROSTFREE
