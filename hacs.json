@@ -1,6 +1,5 @@
 {
-  "name": "heatger-card",
+  "name": "Heatger Card",
   "render_readme": true,
-  "zip_release": true,
-  "filename": "heatger-card.zip"
+  "filename": "heatger-card.js"
 }
