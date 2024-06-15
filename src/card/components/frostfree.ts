@@ -8,47 +8,39 @@ import { localize } from '../../localize/localize'
 import { customElement, property } from 'lit/decorators.js'
 import { remainingTime } from '../../utils/convert/convert'
 import { style } from '../../style'
-import { STOP_FROSTFREE_PAYLOAD } from '../../panel/consts'
 import { type TemplateResult } from 'lit/development'
+import { heatgerActivateFrostfree, heatgerDeactivateFrostfree } from '../data/api/ha-api'
 
 @customElement('heatger-frostfree')
 export class HeatgerFrostfree extends LitElement {
   @property() public hass!: HomeAssistant
-  @property() public activated!: (activated: boolean) => void
-  @property() public endDate: Date | undefined
+  @property() public endDate: number | undefined
+  @property() public reload!: () => void
 
-  handleFrostFree (ev: MouseEvent): void {
+  async handleFrostFree (ev: MouseEvent): Promise<void> {
     ev.preventDefault()
     const dateInput: HTMLInputElement | undefined = this.shadowRoot?.querySelector('#endDate') ?? undefined
     if ((dateInput !== undefined) && dateInput.value === '') return
-    void this.hass.callService('mqtt', 'publish', {
-      topic: 'homeassistant/button/frostfree/commands',
-      payload: dateInput?.value ?? STOP_FROSTFREE_PAYLOAD
-    })
-    this.updateEndDate()
-  }
-
-  setEndDate (endDate: Date | undefined): void {
-    this.endDate = endDate
-    this.updateEndDate()
-  }
-
-  updateEndDate (): void {
-    if (this.endDate === undefined) {
-      this.activated(false)
+    if (dateInput === undefined) {
+      await heatgerDeactivateFrostfree(this.hass)
     } else {
-      this.activated(true)
+      await heatgerActivateFrostfree(this.hass, new Date(dateInput.value))
     }
+    this.reload()
+  }
+
+  setEndDate (endDate: number | undefined): void {
+    this.endDate = endDate
   }
 
   render (): TemplateResult<1> {
-    if (this.endDate !== undefined) {
+    if (this.endDate !== undefined && this.endDate > 0) {
       return html`
                 <div>
                     <h2>${localize('card.frostFree.title', this.hass.language)}</h2>
                     <div class="flex flex-center">
                         <div class="row">
-                            <span class="center">${remainingTime(this.endDate)}</span>
+                            <span class="center">${remainingTime(this.endDate.valueOf(), this.hass.language)}</span>
                         </div>
                     </div>
                     <div class="flex flex-center">

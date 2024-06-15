@@ -1,4 +1,4 @@
 export enum Mode {
-  AUTO = 'AUTO',
-  MANUAL = 'MANUAL'
+  AUTO = 0,
+  MANUAL = 1
 }

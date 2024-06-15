@@ -1,29 +1,4 @@
 {
-  "panel": {
-    "prog": {
-      "selectDays": "Select days",
-      "setTime": "Set time",
-      "setState": "Set State",
-      "day": "Day",
-      "time": "Time",
-      "state": "State"
-    },
-    "ip": {
-      "setName": "Set name",
-      "setIp": "Set ip",
-      "name": "Name",
-      "ip": "Ip"
-    },
-    "login": {
-      "unknownError": "Unknown error",
-      "username": "Username",
-      "password": "Password",
-      "connect": "Connect"
-    },
-    "add": "Add",
-    "delete": "Delete",
-    "deleteAll": "Delete all"
-  },
   "state": {
     "comfort": "Comfort",
     "eco": "Eco",
@@ -41,6 +16,9 @@
   "zone": "Zone",
   "error": "Error",
   "card": {
+    "state": "State",
+    "never": "Never",
+    "dayLetter": "d",
     "mode": "Mode",
     "timeout": "timeout",
     "frostFree": {

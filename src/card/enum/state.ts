@@ -1,5 +1,5 @@
 export enum State {
-  COMFORT = 'COMFORT',
-  ECO = 'ECO',
-  FROST_FREE = 'FROSTFREE'
+  COMFORT = 0,
+  ECO = 1,
+  FROST_FREE = 2
 }

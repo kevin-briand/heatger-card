@@ -1,46 +1,16 @@
 import { localize } from '../../localize/localize'
 
-export const dayToStr = (day: number, language: string): string => {
-  switch (day) {
-    case 0: return localize('dayOfWeek.monday', language)
-    case 1: return localize('dayOfWeek.tuesday', language)
-    case 2: return localize('dayOfWeek.wednesday', language)
-    case 3: return localize('dayOfWeek.thursday', language)
-    case 4: return localize('dayOfWeek.friday', language)
-    case 5: return localize('dayOfWeek.saturday', language)
-    case 6: return localize('dayOfWeek.sunday', language)
-    default: return localize('error', language)
+export const remainingTime = (nextChange: number, lang: string): string => {
+  if (nextChange === -1) {
+    return localize('card.never', lang)
   }
-}
-
-export const orderToStr = (order: number, language: string): string => {
-  switch (order) {
-    case 0: return localize('state.comfort', language)
-    case 1: return localize('state.eco', language)
-    case 2: return localize('state.frostFree', language)
-    default: return localize('error', language)
+  const date = new Date((nextChange + new Date().getTimezoneOffset() * 60) * 1000)
+  date.setMilliseconds(0)
+  if (date.getDate() > 1 && date.getDate() < 8) {
+    return `${date.getDate() - 1}${localize('card.dayLetter', lang)} ${date.getHours()}h`
   }
-}
-
-export const progToNumber = (day: number, hour: string): number => {
-  const splitedHour = hour.split(':')
-  if (splitedHour.length >= 2) {
-    return day * 100 + parseInt(splitedHour.at(0) ?? '') * 10 + parseInt(splitedHour.at(1) ?? '')
+  if (date.getHours() > 0 && date.getDate() === 1) {
+    return `${date.getHours()}h ${date.getMinutes()}m`
   }
-  return -1
-}
-
-export const remainingTime = (nextChange: Date): string => {
-  if (nextChange.toDateString() === 'Invalid Date') { return 'Never' }
-  let date = new Date(nextChange.valueOf() - Date.now())
-  if (date.getUTCDate() > 10) {
-    date = new Date('2023-01-01T00:00:00')
-  }
-  if (date.getUTCDate() > 1 && date.getUTCDate() < 8) {
-    return `${date.getUTCDate() - 1}j ${date.getUTCHours()}h`
-  }
-  if (date.getUTCHours() > 0 && date.getUTCDate() === 1) {
-    return `${date.getUTCHours()}h ${date.getUTCMinutes()}m`
-  }
-  return `${date.getUTCMinutes()}m  ${date.getUTCSeconds()}s`
+  return `${date.getMinutes()}m  ${date.getSeconds()}s`
 }
