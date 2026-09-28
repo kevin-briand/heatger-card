@@ -45,9 +45,9 @@ export class HeatgerFrostfree extends LitElement {
                     </div>
                     <div class="flex flex-center">
                         <div class="row">
-                            <mwc-button @click='${this.handleFrostFree}' class="button" id="stop">
+                            <ha-button @click='${this.handleFrostFree}' class="button" id="stop">
                                 ${localize('card.frostFree.stop', this.hass.language)}
-                            </mwc-button>
+                            </ha-button>
                         </div>
                     </div>
                 </div>
@@ -58,12 +58,12 @@ export class HeatgerFrostfree extends LitElement {
             <div class="grow">
                 <h2>${localize('card.frostFree.frostFree', this.hass.language)}</h2>
                 <form>
-                    <div class="flex row"">
+                    <div class="flex row">
                         <label for="endDate">${localize('card.frostFree.endDate', this.hass.language)}</label>
                         <input class="grow" type="datetime-local" id="endDate">
-                        <mwc-button @click='${this.handleFrostFree}' class="button">
+                        <ha-button @click='${this.handleFrostFree}' class="button">
                             ${localize('card.frostFree.activate', this.hass.language)}
-                        </mwc-button>
+                        </ha-button>
                     </div>
                 </form>
             </div>

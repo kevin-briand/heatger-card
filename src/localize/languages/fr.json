@@ -19,6 +19,7 @@
     "state": "Etat",
     "never": "Jamais",
     "dayLetter": "j",
+    "monthLetter": "m",
     "mode": "Mode",
     "timeout": "Temps restant",
     "frostFree": {

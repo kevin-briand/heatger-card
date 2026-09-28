@@ -1,16 +1,25 @@
 import { localize } from '../../localize/localize'
 
 export const remainingTime = (nextChange: number, lang: string): string => {
-  if (nextChange === -1) {
+  if (nextChange < 0) {
     return localize('card.never', lang)
   }
-  const date = new Date(nextChange * 1000)
-  date.setMilliseconds(0)
-  if (date.getUTCDate() > 1 && date.getUTCDate() < 8) {
-    return `${date.getUTCDate() - 1}${localize('card.dayLetter', lang)} ${date.getUTCHours()}h`
+
+  const days = Math.floor(nextChange / (24 * 3600))
+  const hours = Math.floor((nextChange % (24 * 3600)) / 3600)
+  const minutes = Math.floor((nextChange % 3600) / 60)
+  const remainingSeconds = Math.floor(nextChange % 60)
+
+  let finalStrDate = ''
+  if (days > 0) {
+    finalStrDate += `${days}${localize('card.dayLetter', lang)} `
   }
-  if (date.getUTCHours() > 0 && date.getUTCDate() === 1) {
-    return `${date.getUTCHours()}h ${date.getUTCMinutes()}m`
+  if (hours > 0) {
+    finalStrDate += `${hours}h `
   }
-  return `${date.getUTCMinutes()}m  ${date.getUTCSeconds()}s`
+  if (minutes > 0) {
+    finalStrDate += `${minutes}m `
+  }
+  finalStrDate += `${remainingSeconds}s`
+  return finalStrDate
 }

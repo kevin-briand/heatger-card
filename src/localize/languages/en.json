@@ -19,6 +19,7 @@
     "state": "State",
     "never": "Never",
     "dayLetter": "d",
+    "monthLetter": "m",
     "mode": "Mode",
     "timeout": "timeout",
     "frostFree": {

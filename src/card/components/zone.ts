@@ -43,9 +43,9 @@ export class HeatgerZone extends LitElement {
     return html`
             <p class="flex row">
                 <span class="grow">${name}</span>
-                <mwc-button @click='${() => onClick(id[id.length - 1])}' class="button btn_zone" id="${id}_${name}">
+                <ha-button @click='${() => onClick(id[id.length - 1])}' class="button btn_zone" id="${id}_${name}">
                     ${value}
-                </mwc-button>
+                </ha-button>
             </p>
         `
   }
