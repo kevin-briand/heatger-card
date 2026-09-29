@@ -1,92 +1,63 @@
 import { css } from 'lit'
 
+/** shared look of the card, based on the variables of the Home Assistant theme (light and dark) */
 export const style = css`
-  .button {
-    margin-right: -0.57em;
-  }
-  
-  .flex {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .flex-center {
-    justify-content: center !important;
-  }
-  
-  .flexRow {
-    display: flex;
-    margin-bottom: 0.5rem;
-    justify-content: center;
-  }
-  
-  .flexRow-center {
-    justify-content: center;
+  :host {
+    --hg-radius: 12px;
+    --hg-border: var(--divider-color, rgba(127, 127, 127, 0.3));
+    --hg-comfort: var(--state-climate-heat-color, #ff8100);
+    --hg-eco: var(--state-climate-cool-color, #2b9af9);
+    --hg-off: var(--state-climate-off-color, #8a8a8a);
+    --hg-muted: var(--secondary-text-color);
+    color: var(--primary-text-color);
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .gap {
-    gap: 1rem;
-  }
-  
-  .grow {
-    flex-grow: 1;
+  button {
+    font: inherit;
+    color: inherit;
   }
 
-  h2, .center {
-    text-align: center;
-  }
-  
-  ha-card {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    max-width: calc(100vw - 10px);
-  }
-
-  label {
-    width: 120px;
-    align-self: center;
-  }
-  
-  .row {
-    height: 40px;
+  .hint {
+    color: var(--hg-muted);
+    font-size: 0.8rem;
+    line-height: 1.3;
     margin: 0;
+  }
+
+  .segmented {
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 18px;
+    background-color: rgba(127, 127, 127, 0.12);
+  }
+
+  .segmented button {
+    display: inline-flex;
     align-items: center;
-  }
-  
-  table {
-    margin-top: 1rem;
-    width: 100%;
-  }
-  
-  thead td {
-    font-weight: bold;
-  }
-  
-  td {
-    width: 25%;
-  }
-  
-  tr td:last-child {
-    text-align: right;
-  }
-  
-  select, input {
-    background-color: var(--mdc-text-field-fill-color);
-    flex-grow: 1;
+    gap: 4px;
+    height: 28px;
+    padding: 0 8px;
     border: none;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--hg-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    --mdc-icon-size: 18px;
   }
-  
-  #state option {
-    background-color: var(--mdc-text-field-fill-color);
+
+  .segmented button.selected {
+    background-color: rgba(var(--rgb-primary-color, 3, 169, 244), 0.18);
+    color: var(--primary-text-color);
+    padding: 0 10px 0 8px;
   }
-  
-  
+
+  .segmented button.selected.heating ha-icon {
+    color: var(--hg-comfort);
+  }
+
+  .segmented button.selected.cooling ha-icon {
+    color: var(--hg-eco);
+  }
 `

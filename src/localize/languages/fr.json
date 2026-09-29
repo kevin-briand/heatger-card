@@ -1,8 +1,9 @@
 {
   "state": {
     "comfort": "Confort",
-    "eco": "Eco",
-    "frostfree": "Hors-gel"
+    "eco": "Éco",
+    "frostfree": "Hors-gel",
+    "frostFree": "Hors-gel"
   },
   "dayOfWeek": {
     "monday": "Lundi",
@@ -14,7 +15,7 @@
     "sunday": "Dimanche"
   },
   "zone": "Zone",
-    "error": "Erreur",
+  "error": "Erreur",
   "card": {
     "state": "Etat",
     "never": "Jamais",
@@ -28,10 +29,25 @@
       "activate": "Activation",
       "endDate": "Date fin",
       "frostFree": "Hors-gel"
-    }
+    },
+    "waitingPresence": "Confort dès que quelqu'un rentre",
+    "toggleMode": "Basculer Auto / Manuel",
+    "toggleState": "Basculer Confort / Éco jusqu'au prochain changement",
+    "nextChange": "Changement dans",
+    "noProgram": "Programme suspendu",
+    "noZone": "Aucune zone configurée"
   },
   "mode": {
     "auto": "Auto",
     "manual": "Manuel"
+  },
+  "season": {
+    "title": "Saison",
+    "heating": "Chauffage",
+    "cooling": "Climatisation",
+    "stop": "Arrêt",
+    "then": "puis",
+    "until": "Jusqu'au",
+    "stopHint": "Radiateurs en hors-gel"
   }
 }

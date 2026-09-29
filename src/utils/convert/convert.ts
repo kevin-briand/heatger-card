@@ -20,6 +20,7 @@ export const remainingTime = (nextChange: number, lang: string): string => {
   if (minutes > 0) {
     finalStrDate += `${minutes}m `
   }
-  finalStrDate += `${remainingSeconds}s`
-  return finalStrDate
+  // the seconds are only useful for the last hour
+  if (days === 0 && hours === 0) finalStrDate += `${remainingSeconds}s`
+  return finalStrDate.trim()
 }

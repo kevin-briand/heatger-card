@@ -28,10 +28,25 @@
       "activate": "Activate",
       "endDate": "End date",
       "frostFree": "Frost-free"
-    }
+    },
+    "waitingPresence": "Comfort as soon as someone is home",
+    "toggleMode": "Toggle Auto / Manual",
+    "toggleState": "Toggle Comfort / Eco until the next change",
+    "nextChange": "Change in",
+    "noProgram": "Program suspended",
+    "noZone": "No zone configured"
   },
   "mode": {
     "auto": "Auto",
     "manual": "Manual"
+  },
+  "season": {
+    "title": "Season",
+    "heating": "Heating",
+    "cooling": "Cooling",
+    "stop": "Stop",
+    "then": "then",
+    "until": "Until",
+    "stopHint": "Radiators frost-free"
   }
 }

@@ -16,18 +16,16 @@ This card has English/French translation
 ### With HACS
 - Go to the HACS panel
 - select 3 dots in the top right corner > Custom repositories
-- paste https://github.com/kevin-briand/heatger-card and select integration category
-- find the massa_node integration in the list and download it
-- go to Settings > Devices & services > add integration
-- select Massa Node
-- fill out the form
+- paste https://github.com/kevin-briand/heatger-card and select dashboard category
+- find the heatger card in the list and download it
+- add the card "Heatger Card" to a dashboard
+
+The version 1.1 of the card needs the version 2 of the heatger integration (seasons).
 
 ### Manual
-To install this integration, follow these steps.
-- add the custom_components folder into the home assistant config folder
-- go to Settings > Devices & services > add integration
-- select Massa Node
-- fill out the form
+- copy `dist/heatger-card.js` into the `www` folder of home assistant
+- add it as a dashboard resource (`/local/heatger-card.js`, JavaScript module)
+- add the card "Heatger Card" to a dashboard
 
 ## use
 ### toggle state/mode
