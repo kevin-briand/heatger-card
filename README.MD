@@ -1,35 +1,65 @@
 # Heatger card
 
-This repository contains the card for home assistant, it's used for manage and control [heatger integration](https://github.com/kevin-briand/heatger).
+Dashboard card for the [Heatger integration](https://github.com/kevin-briand/heatger): one tile per zone with its
+state, mode and next change, and the current season.
 
-This card has English/French translation
+The card follows your Home Assistant theme (light and dark) and is available in English and French.
 
----
-### table of contents
-- **[custom card for home assistant](#heatger-card)**
-    - **[Install](#install)**
-    - **[use](#use)**
+![card.png](img/img.png)
 
-# heatger card
-![card.png](img/card.png)
-## Install
+## Requirements
+
+| Card | Heatger integration |
+| --- | --- |
+| 2.x | 2.x (seasons) |
+| 1.x | 1.x |
+
+## Installation
+
 ### With HACS
-- Go to the HACS panel
-- select 3 dots in the top right corner > Custom repositories
-- paste https://github.com/kevin-briand/heatger-card and select dashboard category
-- find the heatger card in the list and download it
-- add the card "Heatger Card" to a dashboard
 
-The version 1.1 of the card needs the version 2 of the heatger integration (seasons).
+1. Go to **HACS**, open the menu (three dots, top right) > **Custom repositories**.
+2. Add `https://github.com/kevin-briand/heatger-card` with the **Dashboard** category.
+3. Find **Heatger Card** in the list and download it.
+4. Add the card **Heatger Card** to a dashboard.
 
 ### Manual
-- copy `dist/heatger-card.js` into the `www` folder of home assistant
-- add it as a dashboard resource (`/local/heatger-card.js`, JavaScript module)
-- add the card "Heatger Card" to a dashboard
 
-## use
-### toggle state/mode
-You can click on the mode/state buttons to change the mode/state(mode: auto<>manual, state: comfort<>eco).
-### activate/deactivate frost-free
-To activate frost-free, select the end date and click Activate.
-when the frost-free is activated, the remaining time to the end is displayed and you can click on the stop button to stop the frost-free.
+1. Copy `dist/heatger-card.js` into the `www` folder of your Home Assistant configuration.
+2. Add it as a dashboard resource: `/local/heatger-card.js`, type **JavaScript module**.
+3. Add the card **Heatger Card** to a dashboard.
+
+## Configuration
+
+```yaml
+type: custom:heatger-card
+title: Chauffage   # optional, "Heatger" by default
+```
+
+## Use
+
+### Zones
+
+Each zone is a tile coloured by its state: orange for **Comfort**, blue for **Eco**, grey when the season is **Stop**.
+
+- **Tap the state** to switch between Comfort and Eco until the next change of the program.
+- **Tap the Auto / Manual chip** to suspend the program (manual mode) or follow it again (auto mode).
+- The bottom of the tile shows the time until the next change. When Comfort waits for someone to come home, the
+  tile pulses and says so.
+
+### Season
+
+The selector at the top right shows the current season (**Heating**, **Cooling** or **Stop**); tap another one to
+switch. When the season ends at a given date, the date and the season that follows are shown below.
+
+Scheduling a season (for example "Stop until 1 November, then Heating") is done in the **Heatger** panel of the
+sidebar.
+
+## Development
+
+```bash
+npm install
+npm run build   # compiles to dist/heatger-card.js
+```
+
+The release workflow uploads `dist/heatger-card.js` as it is: build and commit it before publishing a release.
